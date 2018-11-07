@@ -1,20 +1,25 @@
 $(document).ready(function(){
 var topic = ["Bye", "Good Morning", "love you", "so tired", "excited", "tgif"]
+var renderButtons = function(){
 for (var j = 0; j < topic.length; j++){
-    var phraseButton = $("<button>").addClass("button phraseButton");
+    // $("#gifs-go-here").empty();
+    var phraseButton = $("<button>").addClass("buttons phraseButton");
     phraseButton.attr("data-title", topic[j]);
     phraseButton.text(topic[j]);
     $("#button-row").append(phraseButton);
 };
-// not staying in the button row
-// $(document).on("click", "#save-gif", function(){
-//     var userInput = $("#input").val().trim();
-//     var userAddedButton = $("<button>");
-//     userAddedButton.text(userInput)
-//     $("#button-row").append(userAddedButton);
-// });
+};
+renderButtons();
 
-$("button").on("click", function(){
+$("#save-gif").on("click", function(event) {
+    event.preventDefault();
+    $("#button-row").empty();
+    var newGIF = $("#input").val().trim();
+    topic.push(newGIF);
+    renderButtons();
+})
+
+$(document).on("click", ".buttons", function(){
     var search = $(this).attr("data-title")
     var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=spWh9C8hZ8YYZbe5GmdARig3L7FNyNFK&limit=10&rating=g&rating=pg";
     
@@ -44,7 +49,7 @@ $("button").on("click", function(){
     });
 });
 
-// $("img").on("click", function(){
+//$(document.body)on click // $("img").on("click", function(){
     //need to access to for loop... do another one? 
     //change gif img attr to ("src", results[i].images.fixed_height.url)
 // })
