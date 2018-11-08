@@ -1,0 +1,25 @@
+form {
+    margin-top: 5%;
+}
+
+h1  {
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 90px;
+    margin-bottom: 0;
+}
+h2{
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 75px;
+}
+
+#button-row {
+    margin-left: 2%;
+}
+
+.main-body {
+    background-image: url(dust_scratches/dust_scratches.png);
+}

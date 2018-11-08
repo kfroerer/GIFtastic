@@ -18,7 +18,8 @@ $("#save-gif").on("click", function(event) {
     topic.push(newGIF);
     renderButtons();
 })
-
+var animatedGIF;
+var stillGIF;
 $(document).on("click", ".buttons", function(){
     var search = $(this).attr("data-title")
     var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=spWh9C8hZ8YYZbe5GmdARig3L7FNyNFK&limit=10&rating=g&rating=pg";
@@ -39,7 +40,13 @@ $(document).on("click", ".buttons", function(){
             var p = $("<p>").text("Rating: " + rating);
             
             var gifImage = $("<img>");
-            gifImage.attr("src", results[i].images.fixed_height.url);
+            //do variable for images source
+            animatedGIF = results[i].images.fixed_height.url
+            stillGIF = results[i].images.fixed_height_still.url
+            // animatedGIF.attr("state", "animated")
+            // stillGIF.attr("state", "still");
+            gifImage.attr("src", animatedGIF);
+            //attach both static and animated url as attributes
             
             gifDiv.prepend(p);
             gifDiv.prepend(gifImage);
@@ -49,6 +56,15 @@ $(document).on("click", ".buttons", function(){
     });
 });
 
+
+// $("<img>").on("click", function(){
+//     var gifState = $(this).attr("state");
+//     if ( gifState == "animated"){
+//         $("<img>").attr("src", stillGIF);
+//     }else{
+//         $("<img>").attr("src", animatedGIF); 
+//     }
+// });
 //$(document.body)on click // $("img").on("click", function(){
     //need to access to for loop... do another one? 
     //change gif img attr to ("src", results[i].images.fixed_height.url)
