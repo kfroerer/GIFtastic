@@ -18,8 +18,9 @@ $("#save-gif").on("click", function(event) {
     topic.push(newGIF);
     renderButtons();
 })
-var animatedGIF;
-var stillGIF;
+// var animatedGIF;
+// var stillGIF;
+var gifImage;
 $(document).on("click", ".buttons", function(){
     var search = $(this).attr("data-title")
     var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=spWh9C8hZ8YYZbe5GmdARig3L7FNyNFK&limit=10&rating=g&rating=pg";
@@ -40,12 +41,16 @@ $(document).on("click", ".buttons", function(){
             var p = $("<p>").text("Rating: " + rating);
             
             var gifImage = $("<img>");
+            // stillGIF = 
+            // animatedGIF = 
+            gifImage.addClass("gif")
+            gifImage.attr("data-state", "animated");
+            gifImage.attr("data-animate", results[i].images.fixed_height.url);
+            gifImage.attr("data-still", results[i].images.fixed_height_still.url);
             //do variable for images source
-            animatedGIF = results[i].images.fixed_height.url
-            stillGIF = results[i].images.fixed_height_still.url
+            gifImage.attr("src", results[i].images.fixed_height.url);
             // animatedGIF.attr("state", "animated")
             // stillGIF.attr("state", "still");
-            gifImage.attr("src", animatedGIF);
             //attach both static and animated url as attributes
             
             gifDiv.prepend(p);
@@ -57,14 +62,17 @@ $(document).on("click", ".buttons", function(){
 });
 
 
-// $("<img>").on("click", function(){
-//     var gifState = $(this).attr("state");
-//     if ( gifState == "animated"){
-//         $("<img>").attr("src", stillGIF);
-//     }else{
-//         $("<img>").attr("src", animatedGIF); 
-//     }
-// });
+$(document).on("click", ".gif", function(){
+    var gifState = $(this).attr("data-state");
+    console.log(gifState);
+    if ( gifState == "animated"){
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    } else {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    }
+});
 //$(document.body)on click // $("img").on("click", function(){
     //need to access to for loop... do another one? 
     //change gif img attr to ("src", results[i].images.fixed_height.url)
