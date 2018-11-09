@@ -23,7 +23,7 @@ $("#save-gif").on("click", function(event) {
 var gifImage;
 $(document).on("click", ".buttons", function(){
     var search = $(this).attr("data-title")
-    var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=spWh9C8hZ8YYZbe5GmdARig3L7FNyNFK&limit=10&rating=g&rating=pg";
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=spWh9C8hZ8YYZbe5GmdARig3L7FNyNFK&limit=10&rating=g&rating=pg";
     
     $.ajax({
         url: queryUrl,
@@ -66,25 +66,12 @@ $(document).on("click", ".gif", function(){
     var gifState = $(this).attr("data-state");
     console.log(gifState);
     if ( gifState == "animated"){
-        $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
+        $(this).attr("src", $(this).attr("data-still"));
     } else {
         $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
+        $(this).attr("data-state", "animated");
     }
 });
-//$(document.body)on click // $("img").on("click", function(){
-    //need to access to for loop... do another one? 
-    //change gif img attr to ("src", results[i].images.fixed_height.url)
-// })
-
-// on <img> click,
-//  if still, change img to fixed_height
-//  if animated, change img to fixed_height_still
-
-
-
-// });//end of button click event
-
-// })
+ //clicks will restart the animation on original gif, not pause it
 });
