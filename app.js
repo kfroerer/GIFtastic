@@ -37,18 +37,19 @@ $(document).on("click", ".buttons", function(){
             var gifDiv = $("<div>");
             
             var rating = results[i].rating;
+            var title = results[i].title;
             
-            var p = $("<p>").text("Rating: " + rating);
+            var p = $("<p>").text("Title: " + title + " " + "Rating: " + rating);
             
             var gifImage = $("<img>");
             // stillGIF = 
             // animatedGIF = 
             gifImage.addClass("gif")
-            gifImage.attr("data-state", "animated");
+            gifImage.attr("data-state", "still");
             gifImage.attr("data-animate", results[i].images.fixed_height.url);
             gifImage.attr("data-still", results[i].images.fixed_height_still.url);
             //do variable for images source
-            gifImage.attr("src", results[i].images.fixed_height.url);
+            gifImage.attr("src", results[i].images.fixed_height_still.url);
             // animatedGIF.attr("state", "animated")
             // stillGIF.attr("state", "still");
             //attach both static and animated url as attributes
@@ -65,13 +66,12 @@ $(document).on("click", ".buttons", function(){
 $(document).on("click", ".gif", function(){
     var gifState = $(this).attr("data-state");
     console.log(gifState);
-    if ( gifState == "animated"){
-        $(this).attr("data-state", "still");
-        $(this).attr("src", $(this).attr("data-still"));
-    } else {
+    if ( gifState == "still"){
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animated");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
     }
 });
- //clicks will restart the animation on original gif, not pause it
 });
