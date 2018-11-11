@@ -1,5 +1,6 @@
 form {
-    margin-top: 5%;
+    margin-top: 3%;
+    margin-left: 2%;
 }
 
 h1  {
@@ -14,6 +15,14 @@ h2{
     color: white;
     text-align: center;
     line-height: 75px;
+    margin-bottom: 0;
+}
+h3 {
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 45px;
+    margin-bottom: 0;  
 }
 
 #button-row {
@@ -22,9 +31,14 @@ h2{
 
 .main-body {
     background-image: url(dust_scratches/dust_scratches.png);
-    margin-left: 2%;
+  
 }
 
-.gif {
-    display: inline-block;
+img {
+    float: left;
+   
+}
+
+#gifs-go-here {
+    margin-left: 2%;
 }
